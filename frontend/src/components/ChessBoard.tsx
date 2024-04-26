@@ -1,7 +1,7 @@
  export const ChessBoard = ()=>{
     return (
-        <div>
-             
+        <div className="text-white-200 w-full">
+              chessBoard
         </div>
     )
 }
