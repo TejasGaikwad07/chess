@@ -1,14 +1,18 @@
 import { Color, PieceSymbol, Square } from "chess.js";
+import { useState } from "react";
 
 export const ChessBoard = ({
-  board,
+  board,socket
 }: {
-  board: {
+  board: ({
     square: Square;
     type: PieceSymbol;
     color: Color;
-  } | null;
+  } | null)[][];
+   socket : WebSocket
 }) => {
+    const [from, setFrom] = useState(null)
+    const [to , setTo] = useState(null)
   return (
     <div className="text-white-200 w-full">
       {board.map((row, i) => {
@@ -18,11 +22,15 @@ export const ChessBoard = ({
               return (
                 <div
                   key={j}
-                  className={`w-8 h-8 ${
-                    square ? "bg-green-800" : "bg-green-300"
+                  className={`w-16 h-16 ${
+                    (i + j) % 2 === 0 ? "bg-green-500" : "bg-white"
                   }`}
                 >
-                  {square ? square.type : ""}
+                  <div className="w-full justify-center flex  h-full">
+                    <div className="h-full justify-center flex flex-col">
+                      {square ? square.type : ""}
+                    </div>
+                  </div>
                 </div>
               );
             })}
