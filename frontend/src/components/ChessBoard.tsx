@@ -6,10 +6,10 @@ export const ChessBoard = ({
   chess,
   board,
   socket,
-  setBoard
+  setBoard,
 }: {
-    chess: any;
-   setBoard : any;
+  chess: any;
+  setBoard: any;
   board: ({
     square: Square;
     type: PieceSymbol;
@@ -40,30 +40,37 @@ export const ChessBoard = ({
                           type: MOVE,
                           payload: {
                             move: {
-                                from,
-                                to: squareRepresentation,
-
-                            }
-                           
-                          }
+                              from,
+                              to: squareRepresentation,
+                            },
+                          },
                         })
-                      )
-                      setFrom(null)
+                      );
+                      setFrom(null);
                       chess.move({
                         from,
-                        to:squareRepresentation
+                        to: squareRepresentation,
                       });
                       setBoard(chess.board());
                     }
                   }}
                   key={j}
                   className={`w-16 h-16 ${
-                    (i + j) % 2 === 0 ? "bg-green-500" : "bg-white"
+                    (i + j) % 2 === 0 ? "bg-green-500" : "bg-slate-500"
                   }`}
                 >
                   <div className="w-full justify-center flex  h-full">
                     <div className="h-full justify-center flex flex-col">
-                      {square ? square.type : ""}
+                      {square ? (
+                        <img
+                          className="w-4"
+                          src={`/${
+                            square?.color === "b"
+                              ? square?.type
+                              : `${square?.type?.toUpperCase()} copy`
+                          }.png`}
+                        />
+                      ) : null}
                     </div>
                   </div>
                 </div>
