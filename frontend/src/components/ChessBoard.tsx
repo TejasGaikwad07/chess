@@ -63,7 +63,7 @@ export const ChessBoard = ({
                     <div className="h-full justify-center flex flex-col">
                       {square ? (
                         <img
-                          className="w-4"
+                        //   className=""
                           src={`/${
                             square?.color === "b"
                               ? square?.type
